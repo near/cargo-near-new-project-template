@@ -1,0 +1,26 @@
+name: Test
+on:
+  workflow_call:
+
+jobs:
+  fmt:
+    name: Check code formatting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Unit tests
+        run: |
+          cargo fmt --check
+
+  quality-control:
+    name: Quality control checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - uses: Swatinem/rust-cache@v1
+      - name: Linter
+        run: cargo clippy --all-features --workspace --tests -- --warn clippy::all --warn clippy::nursery
+      - name: Unit tests
+        run: cargo test
