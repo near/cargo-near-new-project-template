@@ -21,6 +21,8 @@ jobs:
         uses: actions/checkout@v2
       - uses: Swatinem/rust-cache@v1
       - name: Linter
-        run: cargo clippy --all-features --workspace --tests -- --warn clippy::all --warn clippy::nursery
+        run: |
+          rustup component add clippy
+          cargo clippy --all-features --workspace --tests -- --warn clippy::all --warn clippy::nursery
       - name: Unit tests
         run: cargo test
