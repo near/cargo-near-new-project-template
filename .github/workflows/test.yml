@@ -3,26 +3,30 @@ on:
   workflow_call:
 
 jobs:
-  fmt:
-    name: Check code formatting
+  code-formatting:
+    name: Code Formatting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Unit tests
-        run: |
-          cargo fmt --check
+      - run: cargo fmt --check
 
-  quality-control:
-    name: Quality control checks
+  code-linter:
+    name: Code Linter
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - uses: Swatinem/rust-cache@v1
-      - name: Linter
+      - name: Run cargo clippy
         run: |
           rustup component add clippy
           cargo clippy --all-features --workspace --tests -- --warn clippy::all --warn clippy::nursery
-      - name: Unit tests
+
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Run cargo test
         run: cargo test
