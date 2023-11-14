@@ -11,7 +11,7 @@ jobs:
     needs: [test]
     runs-on: ubuntu-latest
     env:
-      NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID: gh-${{ github.event.number }}.${{ variables.NEAR_CONTRACT_STAGING_ACCOUNT_ID }}
+      NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID: gh-${{ github.event.number }}.${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_ID }}
 
     steps:
       - name: Checkout repository
@@ -22,12 +22,12 @@ jobs:
       - name: Create staging account
         run: |
           near account create-account fund-myself "${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }}" '10 NEAR' \
-            use-manually-provided-public-key "${{ variables.NEAR_CONTRACT_STAGING_ACCOUNT_PUBLIC_KEY }}" \
-            sign-as "${{ variables.NEAR_CONTRACT_STAGING_ACCOUNT_ID }}" \
-            network-config "${{ variables.NEAR_CONTRACT_STAGING_NETWORK }}" \
+            use-manually-provided-public-key "${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_PUBLIC_KEY }}" \
+            sign-as "${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_ID }}" \
+            network-config "${{ vars.NEAR_CONTRACT_STAGING_NETWORK }}" \
             sign-with-plaintext-private-key \
-              --signer-public-key "${{ variables.NEAR_CONTRACT_STAGING_ACCOUNT_PUBLIC_KEY }}" \
-              --signer-private-key "${{ variables.NEAR_CONTRACT_STAGING_ACCOUNT_PRIVATE_KEY }}" \
+              --signer-public-key "${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_PUBLIC_KEY }}" \
+              --signer-private-key "${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_PRIVATE_KEY }}" \
             send
 
       - name: Install cargo-near CLI
@@ -36,8 +36,8 @@ jobs:
         run: |
           cargo near deploy ${{ secrets.NEAR_CONTRACT_PR_STAGING_ACCOUNT }} \
             without-init-call \
-            network-config "${{ variables.NEAR_CONTRACT_STAGING_NETWORK }}" \
+            network-config "${{ vars.NEAR_CONTRACT_STAGING_NETWORK }}" \
             sign-with-plaintext-private-key \
-              --signer-public-key "${{ variables.NEAR_CONTRACT_STAGING_ACCOUNT_PUBLIC_KEY }}" \
-              --signer-private-key "${{ variables.NEAR_CONTRACT_STAGING_ACCOUNT_PRIVATE_KEY }}" \
+              --signer-public-key "${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_PUBLIC_KEY }}" \
+              --signer-private-key "${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_PRIVATE_KEY }}" \
             send
