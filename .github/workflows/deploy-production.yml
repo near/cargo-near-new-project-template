@@ -8,7 +8,7 @@ jobs:
     uses: ./.github/workflows/test.yml
 
   deploy-staging:
-    name: Check code formatting
+    name: Deploy to production
     needs: [test]
     runs-on: ubuntu-latest
     steps:
