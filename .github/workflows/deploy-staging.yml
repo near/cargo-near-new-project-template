@@ -43,5 +43,7 @@ jobs:
             send
 
       - name: Comment on pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh pr comment "${{ github.event.number }}" --body "Staging contract is deployed to ["'`'"${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }}"'`'" account](https://explorer.${{ vars.NEAR_CONTRACT_STAGING_NETWORK }}.near.org/accounts/${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }})"
