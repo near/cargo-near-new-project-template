@@ -41,3 +41,7 @@ jobs:
               --signer-public-key "${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_PUBLIC_KEY }}" \
               --signer-private-key "${{ secrets.NEAR_CONTRACT_STAGING_ACCOUNT_PRIVATE_KEY }}" \
             send
+
+      - name: Comment on pull request
+        run: |
+          gh pr comment "${{ github.event.number }}" --body "Staging contract is deployed to ["'`'"${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }}"'`'" account](https://explorer.${{ vars.NEAR_CONTRACT_STAGING_NETWORK }}.near.org/accounts/${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }})"
