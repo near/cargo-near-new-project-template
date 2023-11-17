@@ -8,6 +8,8 @@ jobs:
 
   deploy-staging:
     name: Deploy to staging subaccount
+    permissions:
+      pull-requests: write
     needs: [test]
     runs-on: ubuntu-latest
     env:
