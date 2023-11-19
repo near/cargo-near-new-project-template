@@ -1,6 +1,6 @@
-# <Cargo.package.name>
+# cargo-near-new-project-name
 
-<Cargo.package.description>
+cargo-near-new-project-description
 
 ## How to Build Locally?
 
