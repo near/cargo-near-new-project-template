@@ -1,0 +1,8 @@
+{
+  "name": "Cargo Near",
+  "id": "cargo-near",
+  "version": "0.1.0",
+  "description": "A feature to install cargo-near",
+  "options": {},
+  "installsAfter": ["ghcr.io/devcontainers/features/rust", "ghcr.io/lee-orr/rusty-dev-containers/cargo-binstall"]
+}
