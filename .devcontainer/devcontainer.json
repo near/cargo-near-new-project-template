@@ -34,7 +34,7 @@
   // 👇 Configure tool-specific properties.
   // "customizations": {},
 
-  // "remoteUser": "vscode",
+  "remoteUser": "vscode",
 
   "customizations": {
     "codespaces": {
