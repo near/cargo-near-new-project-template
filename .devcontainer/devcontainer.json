@@ -5,7 +5,6 @@
     "context": "."
   },
 
-  // 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
   "features": {
     "./cargo-near": {},
     "./near-cli": {},
@@ -30,9 +29,6 @@
   // "forwardPorts": [],
 
   "postCreateCommand": "bash .devcontainer/init.sh",
-
-  // 👇 Configure tool-specific properties.
-  // "customizations": {},
 
   "remoteUser": "vscode",
 
