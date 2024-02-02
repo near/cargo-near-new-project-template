@@ -1,0 +1,40 @@
+{
+  "name": "NEAR Devcontainer Rust",
+  "build": {
+    "dockerfile": "./Dockerfile",
+    "context": "."
+  },
+
+  "features": {
+    "./cargo-near": {},
+    "./near-cli": {},
+    "ghcr.io/devcontainers-community/features/llvm": {},
+    "ghcr.io/devcontainers/features/rust:1": "latest",
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest",
+      "ppa": "false"
+    },
+    "ghcr.io/lee-orr/rusty-dev-containers/cargo-binstall:0": {},
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "true",
+      "username": "vscode",
+      "userUid": "1000",
+      "userGid": "1000",
+      "upgradePackages": "true"
+    }
+  },
+
+  // 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+
+  "postCreateCommand": "bash .devcontainer/init.sh",
+
+  "remoteUser": "vscode",
+
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["README.md", "src/lib.rs", "tests/test_basics.rs"]
+    }
+  }
+}
