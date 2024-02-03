@@ -3,8 +3,8 @@
 
   "image": "ghcr.io/njelich/near-devcontainer:latest",
 
-  // 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
+  // Uncomment and modify the following lines if necessary
+  // "forwardPorts": [8000],
 
   "customizations": {
     "codespaces": {
