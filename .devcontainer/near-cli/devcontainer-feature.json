@@ -1,0 +1,8 @@
+{
+  "name": "Near CLI",
+  "id": "near-cli",
+  "version": "0.1.0",
+  "description": "A feature to install the near-cli",
+  "options": {},
+  "installsAfter": ["ghcr.io/devcontainers/features/rust", "ghcr.io/lee-orr/rusty-dev-containers/cargo-binstall"]
+}
