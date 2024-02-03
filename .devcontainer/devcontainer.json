@@ -1,3 +1,11 @@
 {
-  "image": "ghcr.io/njelich/near-devcontainer:latest"
+  "name": "NEAR Devcontainer Rust",
+
+  "image": "ghcr.io/njelich/near-devcontainer:latest",
+
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["README.md", "src/lib.rs", "tests/test_basics.rs"]
+    }
+  }
 }
