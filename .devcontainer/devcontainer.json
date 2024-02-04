@@ -5,10 +5,4 @@
 
   // Uncomment and modify the following lines if necessary
   // "forwardPorts": [8000],
-
-  "customizations": {
-    "codespaces": {
-      "openFiles": ["README.md", "src/lib.rs", "tests/test_basics.rs"]
-    }
-  }
 }
