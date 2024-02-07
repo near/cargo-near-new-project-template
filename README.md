@@ -2,6 +2,15 @@
 
 cargo-near-new-project-description
 
+## Quickstart Guide
+
+You can start coding on the NEAR Rust stack in less than a minute, thanks to [NEAR Devcontainers](https://github.com/near/near-devcontainers). How?
+
+1. Click **Use this template**
+2. Select **Open in a codespace** from the dropdown
+
+![Screenshot 2024-02-07 at 15 35 44](https://github.com/njelich/cargo-near-new-project-template/assets/12912633/b9101e73-06ed-4d74-81c0-8a122076b2b2)
+
 ## How to Build Locally?
 
 Install [`cargo-near`](https://github.com/near/cargo-near) and run:
