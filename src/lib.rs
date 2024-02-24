@@ -1,5 +1,5 @@
 use near_sdk::borsh::{BorshDeserialize, BorshSerialize};
-use near_sdk::collections::LookupMap;
+use near_sdk::store::LookupMap;
 use near_sdk::{env, near_bindgen, AccountId, BorshStorageKey};
 
 #[near_bindgen]
@@ -27,10 +27,10 @@ impl Default for StatusMessage {
 impl StatusMessage {
     pub fn set_status(&mut self, message: String) {
         let account_id = env::predecessor_account_id();
-        self.records.insert(&account_id, &message);
+        self.records.insert(account_id, message);
     }
 
-    pub fn get_status(&self, account_id: AccountId) -> Option<String> {
+    pub fn get_status(&self, account_id: AccountId) -> Option<&String> {
         self.records.get(&account_id)
     }
 }
@@ -64,10 +64,7 @@ mod tests {
 
         let mut contract = StatusMessage::default();
         contract.set_status("hello".to_string());
-        assert_eq!(
-            "hello".to_string(),
-            contract.get_status(accounts(1)).unwrap()
-        );
+        assert_eq!("hello", contract.get_status(accounts(1)).unwrap());
     }
 
     #[test]
