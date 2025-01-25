@@ -5,4 +5,9 @@
 
   // Uncomment and modify the following lines if necessary
   // "forwardPorts": [8000],
+
+  "features": {
+    "ghcr.io/near/near-devcontainers/features/cargo-near:latest": {},
+    "ghcr.io/near/near-devcontainers/features/near-cli:latest": {}
+  }
 }
