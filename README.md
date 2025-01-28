@@ -23,7 +23,7 @@ Start writing your contract logic in [src/lib.rs](src/lib.rs) and integration te
 Install [`cargo-near`](https://github.com/near/cargo-near) and run:
 
 ```bash
-cargo near build
+cargo near build non-reproducible-wasm
 ```
 
 ## How to Test Locally?
@@ -38,8 +38,38 @@ Deployment is automated with GitHub Actions CI/CD pipeline.
 To deploy manually, install [`cargo-near`](https://github.com/near/cargo-near) and run:
 
 ```bash
-cargo near deploy <account-id>
+cargo near deploy build-non-reproducible-wasm non<account-id>
 ```
+
+## Updating rustup
+
+If, for whaterver reason, one needs to update rust in Codespaces environment,
+
+it's possible to set password in codespaces container:
+
+```bash
+sudo passwd $(whoami)
+```
+
+then, update `rustup` folder permissions 
+
+```bash
+sudo chown -R $(whoami):$(whoami) /usr/local/rustup
+```
+
+then maybe remove some `cargo-clippy` conflicting binary:
+```bash
+rm $CARGO_HOME/bin/cargo-clippy
+```
+
+and then run 
+
+```bash
+rustup update
+```
+
+to completion.
+
 
 ## Useful Links
 
