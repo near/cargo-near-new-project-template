@@ -68,6 +68,9 @@ mod tests {
     #[test]
     fn get_nonexistent_message() {
         let contract = StatusMessage::default();
-        assert_eq!(None, contract.get_status("francis-leo.near".parse().unwrap()));
+        assert_eq!(
+            None,
+            contract.get_status("francis-leo.near".parse().unwrap())
+        );
     }
 }
