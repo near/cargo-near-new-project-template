@@ -38,7 +38,7 @@ Deployment is automated with GitHub Actions CI/CD pipeline.
 To deploy manually, install [`cargo-near`](https://github.com/near/cargo-near) and run:
 
 ```bash
-cargo near deploy build-non-reproducible-wasm non<account-id>
+cargo near deploy build-non-reproducible-wasm <account-id>
 ```
 
 ## Updating rustup
