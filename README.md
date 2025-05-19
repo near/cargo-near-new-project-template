@@ -43,7 +43,7 @@ cargo near deploy build-non-reproducible-wasm <account-id>
 
 ## Updating rustup
 
-CUrrently 1.86.0 is maximum version, supported by Nearcore for running compiled wasm contracts.
+Currently 1.86.0 is maximum version, supported by Nearcore for running compiled wasm contracts.
 
 So, updating version to a newer toolchain is not recommended. 
 
