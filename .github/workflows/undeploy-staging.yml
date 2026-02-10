@@ -16,8 +16,13 @@ jobs:
         run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/near/near-cli-rs/releases/download/v0.20.0/near-cli-rs-installer.sh | sh
       - name: Remove staging account
         run: |
-          near account delete-account "${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }}" \
-            beneficiary "${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_ID }}" \
-            network-config "${{ vars.NEAR_CONTRACT_STAGING_NETWORK }}" \
-            sign-with-plaintext-private-key "${{ secrets.NEAR_CONTRACT_STAGING_ACCOUNT_PRIVATE_KEY }}" \
-            send
+          if near account view-account-summary "${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }}" \
+            network-config "${{ vars.NEAR_CONTRACT_STAGING_NETWORK }}" now > /dev/null 2>&1; then
+            near account delete-account "${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }}" \
+              beneficiary "${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_ID }}" \
+              network-config "${{ vars.NEAR_CONTRACT_STAGING_NETWORK }}" \
+              sign-with-plaintext-private-key "${{ secrets.NEAR_CONTRACT_STAGING_ACCOUNT_PRIVATE_KEY }}" \
+              send
+          else
+            echo "Account ${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }} does not exist, skipping cleanup"
+          fi
