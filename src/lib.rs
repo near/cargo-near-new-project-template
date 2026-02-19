@@ -1,6 +1,6 @@
 use near_sdk::borsh::BorshSerialize;
 use near_sdk::store::LookupMap;
-use near_sdk::{env, near, AccountId, BorshStorageKey};
+use near_sdk::{AccountId, BorshStorageKey, env, near};
 
 #[near(contract_state)]
 pub struct StatusMessage {
@@ -36,7 +36,7 @@ impl StatusMessage {
 #[cfg(not(target_arch = "wasm32"))]
 #[cfg(test)]
 mod tests {
-    use near_sdk::test_utils::{accounts, VMContextBuilder};
+    use near_sdk::test_utils::{VMContextBuilder, accounts};
     use near_sdk::testing_env;
 
     use super::*;
