@@ -22,14 +22,18 @@ jobs:
       - name: Install near CLI
         run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/near/near-cli-rs/releases/download/v0.20.0/near-cli-rs-installer.sh | sh
       - name: Create staging account
-        if: github.event.action == 'opened' || github.event.action == 'reopened'
         run: |
-          near account create-account fund-myself "${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }}" '10 NEAR' \
-            use-manually-provided-public-key "${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_PUBLIC_KEY }}" \
-            sign-as "${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_ID }}" \
-            network-config "${{ vars.NEAR_CONTRACT_STAGING_NETWORK }}" \
-            sign-with-plaintext-private-key "${{ secrets.NEAR_CONTRACT_STAGING_ACCOUNT_PRIVATE_KEY }}" \
-            send
+          if near account view-account-summary "${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }}" \
+            network-config "${{ vars.NEAR_CONTRACT_STAGING_NETWORK }}" now > /dev/null 2>&1; then
+            echo "Account ${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }} already exists, skipping creation"
+          else
+            near account create-account fund-myself "${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }}" '10 NEAR' \
+              use-manually-provided-public-key "${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_PUBLIC_KEY }}" \
+              sign-as "${{ vars.NEAR_CONTRACT_STAGING_ACCOUNT_ID }}" \
+              network-config "${{ vars.NEAR_CONTRACT_STAGING_NETWORK }}" \
+              sign-with-plaintext-private-key "${{ secrets.NEAR_CONTRACT_STAGING_ACCOUNT_PRIVATE_KEY }}" \
+              send
+          fi
 
       - name: Install cargo-near CLI
         run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/near/cargo-near/releases/download/cargo-near-v0.15.0/cargo-near-installer.sh | sh
