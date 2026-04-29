@@ -8,6 +8,7 @@ jobs:
 
   deploy-staging:
     name: Deploy to staging subaccount
+    if: github.actor != 'dependabot[bot]'
     permissions:
       pull-requests: write
     needs: [test]
